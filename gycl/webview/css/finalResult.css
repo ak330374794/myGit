@@ -1,0 +1,46 @@
+
+.openResult{
+    position: relative;
+    width: 90%;
+    height: 12.2rem;
+    margin: 7.2rem auto 0;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    background: #fff;
+    color: #414141;
+}
+
+.icon_result{
+    position: absolute;
+    display: block;
+    top: -5.8rem;
+    left: 50%;
+    margin-left: -5.8rem;
+    width: 11.6rem;
+    height: 11.6rem;
+}
+.icon_succeed{
+    background: url(../img/icon_succeed.png) 100% no-repeat;
+    background-size: 100%;
+}
+.icon_fail{
+    background: url(../img/icon_fail.png) 100% no-repeat;
+    background-size: 100%;
+}
+.resultInfo{
+    padding-top: 5.8rem;
+    width: 100%;
+}
+.resultInfo span{
+    display: block;
+    font-size: 1.28rem;
+    line-height: 2rem;
+    text-align: center;
+}
+.registerConfirm, .bindCardConfirm, .backHome{
+    position: fixed;
+    margin: 0;
+    bottom: 4rem;
+}

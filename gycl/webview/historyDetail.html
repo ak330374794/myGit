@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>历史交易详情</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<!--根据屏幕全局显示-->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<!--允许全屏模式浏览-->
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<!--指定的iphone中safari顶端的状态条的样式;隐藏状态栏-->
+<meta name="format-detection" content="telephone=no" />
+<meta name="keywords" content="基金">
+<meta name="description" content="基金">
+<!--指定的iphone中safari顶端的状态条的样式-->
+<meta name="format-detection" content="email=no" />
+<!--去除Android平台中对邮箱地址的识别-->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<!-- 隐藏地址栏 -->
+<meta name="apple-mobile-web-app-status-bar-style" content="" />
+<!-- 状态条风格 -->
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/detail.css">
+<script>
+    var globalWidth = window.innerWidth;
+    var radixNO = 25/750*globalWidth;
+    if(globalWidth<400){
+        globalWidth = 375;
+        radixNO = 12.5;
+    }
+    var fitStyle = "<style>html{font-size:" + radixNO + "px;}</style>";
+    document.write(fitStyle);
+    (function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var globalWidth = window.innerWidth;// for judge the screen ??
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                docEl.style.fontSize = 25 * (clientWidth / 750) + 'px';
+                if(clientWidth<400){
+                    docEl.style.fontSize = 12.5 + 'px';
+                }
+            };
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+</script>
+</head>
+<body>
+    <div class="header">
+        <a class="goBack" href="javascript:history.go(-1)"><i class="icon icon_back"></i></a>
+        <h2>历史交易详情</h2>
+<!--        <a href="#" id="user" class="user"><i class="icon icon_user"></i><span>李先生</span></a>-->
+    </div>
+    <div class="content">
+        <ul class="formList">
+            <li>
+                <div class="formLeft"><i class="icon icon_no"></i><span>申请编号：</span></div>
+                <div class="formRight"><input id="applyNo" type="text" value="" readonly placeholder=""></div>
+            </li>
+            <li>
+                <div class="formLeft"><i class="icon icon_xxx"></i><span>业务名称：</span></div>
+                <div class="formRight"><input id="businessName" type="text" value="" readonly placeholder=""></div>
+            </li>
+            <li>
+                <div class="formLeft"><i class="icon icon_xx"></i><span>基金名称：</span></div>
+                <div class="formRight"><input id="fundName" type="text" value="" readonly placeholder=""></div>
+            </li>
+            <li>
+                <div class="formLeft"><i class="icon icon_point"></i><span>收费方式：</span></div>
+                <div class="formRight"><input id="chargeWay" type="text" value="" readonly placeholder=""></div>
+            </li>
+            <li>
+                <div class="formLeft"><i class="icon icon_money1"></i><span>申请金额：</span></div>
+                <div class="formRight"><input id="applyMoney" type="text" value="" readonly placeholder=""></div>
+            </li>
+        </ul>
+        <ul class="formList">
+            <li>
+                <div class="formLeft"><i class="icon icon_money2"></i><span>资金方式：</span></div>
+                <div class="formRight"><input id="fundWay" type="text" value="" readonly placeholder=""></div>
+            </li>
+            <li>
+                <div class="formLeft"><i class="icon icon_card"></i><span>关联银行卡：</span></div>
+                <div class="formRight"><input id="linkBank" type="text" value="" readonly placeholder=""></div>
+            </li>
+            <li>
+                <div class="formLeft"><i class="icon icon_type"></i><span>扣款状态：</span></div>
+                <div class="formRight"><input id="payState" type="text" value="" readonly placeholder=""></div>
+            </li>
+            <li>
+                <div class="formLeft"><i class="icon icon_down"></i><span>下单时间：</span></div>
+                <div class="formRight"><input id="orderTime" type="text" value="" readonly placeholder=""></div>
+            </li>
+            <li>
+                <div class="formLeft"><i class="icon icon_time1"></i><span>申请时间：</span></div>
+                <div class="formRight"><input id="applyTime" type="text" value="" readonly placeholder=""></div>
+            </li>
+            <li>
+                <div class="formLeft"><i class="icon icon_mark"></i><span>确认标识：</span></div>
+                <div class="formRight"><input id="conMark" type="text" value="" readonly placeholder=""></div>
+            </li>
+            <li>
+                <div class="formLeft"><i class="icon icon_note"></i><span>备注：</span></div>
+                <div class="formRight"><input id="note" type="text" value="" readonly placeholder=""></div>
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="js/jquery/jquery.min.js"></script>
+<script src="js/jquery/jquery.cookie.js"></script>
+<script src="js/common.js"></script>
+<script src="js/detail.js"></script>
+</html>

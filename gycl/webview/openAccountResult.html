@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>开户</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<!--根据屏幕全局显示-->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<!--允许全屏模式浏览-->
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<!--指定的iphone中safari顶端的状态条的样式;隐藏状态栏-->
+<meta name="format-detection" content="telephone=no" />
+<meta name="keywords" content="基金">
+<meta name="description" content="基金">
+<!--指定的iphone中safari顶端的状态条的样式-->
+<meta name="format-detection" content="email=no" />
+<!--去除Android平台中对邮箱地址的识别-->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<!-- 隐藏地址栏 -->
+<meta name="apple-mobile-web-app-status-bar-style" content="" />
+<!-- 状态条风格 -->
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/finalResult.css">
+<link rel="stylesheet" href="css/openAccount.css">
+<script>
+    var globalWidth = window.innerWidth;
+    var radixNO = 25/750*globalWidth;
+    if(globalWidth<400){
+        globalWidth = 375;
+        radixNO = 12.5;
+    }
+    var fitStyle = "<style>html{font-size:" + radixNO + "px;}</style>";
+    document.write(fitStyle);
+    (function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var globalWidth = window.innerWidth;// for judge the screen ??
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                docEl.style.fontSize = 25 * (clientWidth / 750) + 'px';
+                if(clientWidth<400){
+                    docEl.style.fontSize = 12.5 + 'px';
+                }
+            };
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+</script>
+</head>
+<body>
+    <div class="header">
+<!--        <a class="goBack" href="javascript:history.go(-1)"><i class="icon icon_back"></i></a>-->
+        <h2>开户</h2>
+<!--        <a href="#" id="user" class="user"><i class="icon icon_user"></i><span>李先生</span></a>-->
+    </div>
+    <div class="content">
+        <div class="openResult">
+            <i class="icon_result icon_succeed"></i>
+            <div class="resultInfo">
+                <span>恭喜你，开户成功</span>
+                <span>风险承受能力：保守型</span>
+<!--
+                <span>开户失败</span>
+                <span>原因：网络中断</span>
+-->
+            </div>
+        </div>
+        <div class="notice">
+            <p>温馨提示</p>
+            <p>风险承担类型默认为保守型</P>
+        </div>
+        <div class="btn registerConfirm"><a href="javascript:void(0);">确定</a></div>
+    </div>
+<!--    <div class="logo"><i class="icon icon_logo"></i></div>-->
+</body>
+<script src="js/jquery/jquery.min.js"></script>
+<script src="js/jquery/jquery.cookie.js"></script>
+<script src="js/common.js"></script>
+<script src="js/openAccount.js"></script>
+</html>

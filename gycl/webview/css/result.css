@@ -1,0 +1,90 @@
+.resultList{
+    position: relative;
+    padding: 2rem 1rem 0;
+}
+.resultList li{
+    min-height: 6.8rem;
+    margin-bottom: 5px;
+}
+
+.resultList li div{
+    float: left;
+}
+.resultTime{
+    width: 6rem;
+    padding-top: .7rem;
+}
+.resultTime span{
+    display: block;
+    color: #919191;
+    text-align: right;
+}
+.text{
+    position: relative;
+    width: 55%;
+    min-height: 3.6rem;
+    padding: 0 .8rem;
+    margin-left: 1rem;
+    background: #fff;
+    border-radius: 4px;
+}
+.icon_sanjiao{
+    display: block;
+    position: absolute;
+    top: .84rem;
+    left: -.5rem;
+    width: .6rem;
+    height: 1.2rem;
+    background-position: -4rem -6rem;
+}
+.text span{
+    display: block;
+    line-height: 1.8rem;
+    color: #222;
+    word-wrap: break-word;
+}
+.text .cashResult{
+    line-height: 2.88rem;
+}
+.text span:nth-child(1){
+    font-size: 1rem;
+}
+.icon_apply{
+    display: block;
+    float: left;
+    width: 2.88rem;
+    height: 2.88rem;
+    background-position: -6rem 0;
+}
+.buyblueline, .cashblueline{
+    position: absolute;
+    top: 0;
+    left: 8.44rem;
+    width: 1px;
+    background: #5ea1fc;
+    z-index: -1;
+}
+.buyblueline{
+    height: 15.6rem;
+}
+.cashblueline{
+    height: 2rem;
+}
+.icon_count{
+    display: block;
+    float: left;
+    width: 2.88rem;
+    height: 2.88rem;
+    background-position: -9rem 0;
+}
+.icon_pig{
+    display: block;
+    float: left;
+    width: 2.88rem;
+    height: 2.88rem;
+    background-position: -6rem -4rem;
+}
+.confirm{
+    position: fixed;
+    bottom: 5.2rem;
+}

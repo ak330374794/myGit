@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>绑定银行卡</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<!--根据屏幕全局显示-->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<!--允许全屏模式浏览-->
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<!--指定的iphone中safari顶端的状态条的样式;隐藏状态栏-->
+<meta name="format-detection" content="telephone=no" />
+<meta name="keywords" content="基金">
+<meta name="description" content="基金">
+<!--指定的iphone中safari顶端的状态条的样式-->
+<meta name="format-detection" content="email=no" />
+<!--去除Android平台中对邮箱地址的识别-->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<!-- 隐藏地址栏 -->
+<meta name="apple-mobile-web-app-status-bar-style" content="" />
+<!-- 状态条风格 -->
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/mobiscroll.css">
+<link rel="stylesheet" href="css/mobiscroll_date.css">
+<link rel="stylesheet" href="css/card.css">
+<script>
+    var globalWidth = window.innerWidth;
+    var radixNO = 25/750*globalWidth;
+    if(globalWidth<400){
+        globalWidth = 375;
+        radixNO = 12.5;
+    }
+    var fitStyle = "<style>html{font-size:" + radixNO + "px;}</style>";
+    document.write(fitStyle);
+    (function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var globalWidth = window.innerWidth;// for judge the screen ??
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                docEl.style.fontSize = 25 * (clientWidth / 750) + 'px';
+                if(clientWidth<400){
+                    docEl.style.fontSize = 12.5 + 'px';
+                }
+            };
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+</script>
+</head>
+<body>
+    <div class="header">
+        <a class="goBack" href="javascript:history.go(-1)"><i class="icon icon_back"></i></a>
+        <h2>绑定银行卡</h2>
+<!--        <a href="#" id="user" class="user"><i class="icon icon_user"></i><span>李先生</span></a>-->
+    </div>
+    <div class="content">
+        <div class="bankList listHead"><span>填写信息</span></div>
+        <ul class="formList">
+            <li>
+                <div class="formLeft"><span>银行卡号：</span></div>
+                <div class="formRight"><input id="bankNo" type="tel" value="" placeholder="请输入银行卡号"></div>
+            </li>
+            <li>
+                <div class="formLeft"><span>银行：</span></div>
+                <div class="formRight">
+                    <select id="bankSel" class="bankSel">
+                    </select>
+                </div>
+            </li>
+            <li>
+                <div class="formLeft"><span>预留手机号：</span></div>
+                <div class="formRight"><input id="phoneNo" name="phoneNo" type="tel" value="" placeholder="请输入银行预留手机号"></div>
+            </li>
+            <li>
+                <div class="formLeft"><span>验证码：</span></div>
+                <div class="formRight"><input id="code" name="code" type="text" value="" placeholder="请输入验证码"><a class="code" href="javascript:void(0)" onclick="quickAuthApply()">获取验证码</a></div>
+            </li>
+        </ul>
+        <div class="btn registerFir"><a id="next" href="javascript:void(0)">下一步</a></div>
+    </div>
+<!--    <div class="logo"><i class="icon icon_logo"></i></div>-->
+</body>
+<script src="js/jquery/jquery.min.js"></script>
+<script src="js/jquery/jquery.cookie.js"></script>
+<script src="js/timer/mobiscroll_date.js" charset="gb2312"></script>
+<script src="js/timer/mobiscroll.js"></script>
+<script src="js/common.js"></script>
+<script src="js/bindCard.js"></script>
+<script>
+    $(function () {
+        var currYear = (new Date()).getFullYear();	
+        var opt={};
+        opt.date = {preset : 'date'};
+        opt.datetime = {preset : 'datetime'};
+        opt.time = {preset : 'time'};
+        opt.default = {
+            theme: 'android-ics light', //皮肤样式
+            display: 'modal', //显示方式
+            mode: 'scroller', //日期选择模式
+            dateFormat: 'yyyy-mm-dd',
+            lang: 'zh',
+            showNow: true,
+            nowText: "今天",
+            startYear: currYear - 10, //开始年份
+            endYear: currYear + 20 //结束年份
+        };
+        $("#endTime").mobiscroll($.extend(opt['date'], opt['default']));
+        $("#endTime").on('focus',function(){
+            $(this).addClass('fix-ios-input');
+        });
+        $("#endTime").on('blur',function(){
+            $(this).removeClass('fix-ios-input');
+        });
+    });
+</script>
+</html>

@@ -1,0 +1,106 @@
+.fund{
+    height: auto;
+}
+.rate{
+    background: none;
+}
+.fundInfo {
+    padding-top: 1rem;
+    padding-bottom: 0rem;
+    text-align: center;
+}
+.fundInfo .fundName, .fundInfo .fundNo{
+    font-size: 1.6rem;
+}
+.user{
+    display: block;
+}
+.fundInfo .todayTime{
+    height: 1.52rem;
+    font-size: 1.1rem;
+    margin-top: .4rem;
+}
+.poundage{
+    height: 2.4rem;
+    line-height: 2.4rem;
+    background: rgba(60,136,243, .6);
+}
+.poundage span{
+    display: block;
+    float: left;
+    margin-left: 1rem;
+    height: 2.4rem;
+    line-height: 2.4rem;
+}
+#poundage{
+    float: right;
+    margin-right: 2rem;
+}
+.cashListHead{
+    color: #222;
+    height: 2.8rem;
+}
+.cashListHead div{
+    float: left;
+    font-size: 1.12rem;
+    color: #919191;
+    line-height: 2.8rem;
+}
+.cashList{
+    color: #222;
+    overflow: hidden;
+}
+.cashList ul{
+    overflow: auto;
+}
+.cashList li{
+    width: 100%;
+    height: 3.6rem;
+    line-height: 3.6rem;
+    background: #fff;
+    margin-bottom: .4rem;
+}
+.cashList li div{
+    float: left;
+    font-size: 1.28rem;
+}
+.td3{
+    width: 36%;
+    text-align: left;
+    text-indent: 1rem;
+    line-height: 1.8rem;
+}
+.td3 span{
+    display: block;
+    font-size: 1.2rem;
+}
+.td4{
+    width: 38%;
+    text-align: center;
+}
+.td5{
+    width: 26%;
+    text-align: center;
+    color: #fff;
+}
+.cashList .td5{
+    background: #52e4bd;
+    cursor: pointer;
+}
+
+
+@media screen and (max-height: 480px) {
+    .cashList, .cashList ul{
+        height: 12rem;
+    }
+}
+@media screen and (min-height: 481px) and (max-height: 568px) {
+    .cashList, .cashList ul{
+        height: 16rem;
+    }
+}
+@media screen and (min-height: 569px) {
+    .cashList, .cashList ul{
+        height: 24rem;
+    }
+}
