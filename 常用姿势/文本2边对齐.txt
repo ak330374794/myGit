@@ -1,0 +1,9 @@
+text-align:justify;
+text-justify:inter-ideograph;
+
+1.中文字两端对齐：text-align:justify; text-justify:inter-ideograph; 
+
+2.固定宽度汉字截断：overflow:hidden;text-overflow:ellipsis;white-space:nowrap;(不过只能处 
+理文字在一行上的截断，不能处理多行。)（IE5以上）FF不能，它只隐藏． 
+
+3.固定宽度汉字（词）折行：table-layout:fixed; word-break:break-all;（IE5以上）FF不能 

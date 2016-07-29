@@ -1,0 +1,29 @@
+https://github.com/wjf444128852/about-web-rem
+
+
+<script>
+    var globalWidth = window.innerWidth;
+    var radixNO = 25/750*globalWidth;
+    if(globalWidth<400){
+        globalWidth = 375;
+        radixNO = 12.5;
+    }
+    var fitStyle = "<style>html{font-size:" + radixNO + "px;}</style>";
+    document.write(fitStyle);
+    (function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var globalWidth = window.innerWidth;// for judge the screen ??
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                docEl.style.fontSize = 25 * (clientWidth / 750) + 'px';
+                if(clientWidth<400){
+                    docEl.style.fontSize = 12.5 + 'px';
+                }
+            };
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+</script>
