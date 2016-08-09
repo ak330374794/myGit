@@ -1,0 +1,3 @@
+通过[git subtree push --prefix=dist origin gh-pages](此命令，主要是github的静态服务器，用于托管代码非常使用)
+项目中新建一个分之gh-pages
+然后提交静态文件。
