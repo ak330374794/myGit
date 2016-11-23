@@ -51,7 +51,7 @@
 </head>
 <body>
     <div class="header">
-        <a class="goBack" href="javascript:history.go(-1)"><i class="icon icon_back"></i></a>
+        <a class="goBack backCash" href="javascript:void(0)"><i class="icon icon_back"></i></a>
         <h2>取现申请</h2>
 <!--        <a href="#" id="user" class="user"><i class="icon icon_user"></i><span>李先生</span></a>-->
     </div>
@@ -68,19 +68,21 @@
             <div>
                 <span class="left">取现金额：</span><input type="text" id="backMoney" name="backMoney" class="backMoney black" placeholder="请输入取现金额" val="">
             </div>
-            <div>
+            <div class="bankHeight">
                 <span class="left">到账银行：</span><span class="backBank black"></span>
             </div>
             <div class="cashWay">
                 <div><span>取现方式：</span></div>
-                <div class="cashSel"><i class="icon icon_circle active"></i><span class="black">快速取现</span><span class="little black">（快捷取现资金最快1秒划出）</span></div>
-                <div class="cashSel"><i class="icon icon_circle"></i><span class="black">普通取现</span><span class="little black">（赎回资金将于T+1个工作日划出）</span></div>
+                <div class="cashSel"><i class="icon icon_circle active" data="1"></i><span class="black">快速取现</span><span class="little black">(快捷取现资金最快1秒划出)</span></div>
+                <div class="cashSel"><i class="icon icon_circle" data="0"></i><span class="black">普通取现</span><span class="little black">(赎回资金将于T+1个工作日划出)</span></div>
             </div>
         </div>
-        <div class="remind"><i class="icon icon_sel_y"></i><span class="gray">我已阅读并接受以下协议</span><a class="rule blue" href="#">《基金直销货币基金快速赎回业务规则》</a></div>
-        <div class="btn goCash"><span class="blue position">交易提醒及温馨提示</span><a id="goCash" href="javascript:void(0)">立即取现</a></div>
+        <div class="remind"><i class="icon icon_sel_y"></i><span class="gray">我已阅读并接受以下协议</span></div>
+        <div class="xieyi" ><a id="quik" href="qxywgz.html">基金直销货币基金快速赎回业务规则</a></div>
+        <div class="xieyi" ><a class="warm" href="promptCash.html">交易提醒及温馨提示</a></div>
+        <div class="btn goCash"><a id="goCash" href="javascript:void(0)">立即取现</a></div>
     </div>
-    <div class="logo"><i class="icon icon_logo"></i></div>
+    <!--<div class="logo"><i class="icon icon_logo"></i></div>-->
 </body>
 <script src="js/jquery/jquery.min.js"></script>
 <script src="js/jquery/jquery.cookie.js"></script>

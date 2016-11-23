@@ -1,0 +1,31 @@
+/**index.wxss**/
+.userinfo {
+  display: block;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  display: block;
+  color: #aaa;
+}
+
+.usermotto {
+  
+}
+
+
+.button-hover {
+  background-color: red;
+}
+/** 添加自定义button点击态样式类**/
+.other-button-hover {
+  background-color: blur;
+}

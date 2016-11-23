@@ -1,0 +1,28 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.table-box{
+    position: relative;
+    width: 100%;
+    overflow: scroll;
+    height: 400px;
+}
+.table-top{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    height: 2rem;
+}
+.table-left{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4rem;
+    z-index: 9;
+}
+.table-data{
+    margin-top: 2rem;
+    margin-left: 4rem;
+}

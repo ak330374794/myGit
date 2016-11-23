@@ -1,0 +1,159 @@
+.personInfo{
+    width: 100%;
+    height: 10.4rem;
+    background: #ee5842;
+}
+/*登录前*/
+.headImg{
+    float: left;
+    margin: 2.8rem 1.2rem 2.8rem 1.4rem;
+    width: 4.8rem;
+    height: 4.8rem;
+}
+.headImg img{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.goLogin{
+    float: left;
+    margin-top: 2.8rem;
+    height: 4.8rem;
+    font-size: 1.2rem;
+    color: #fff;
+}
+.goLogin span{
+    display: block;
+    height: 2.4rem;
+    line-height: 2.4rem;
+    text-align: center;
+}
+.goLogin a{
+    display: block;
+    height: 2rem;
+    width: 9.2rem;
+    line-height: 2rem;
+    text-align: center;
+    border: 1px solid #fff;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -ms-border-radius: 8px;
+    cursor: pointer;
+}
+/*登陆后*/
+.headImgsm, .point{
+    width: 100%;
+    height: 5.1rem;
+    color: #fff;
+}
+.after{
+    display: none;
+}
+.headImgsm img{
+    display: block;
+    float: left;
+    margin: .9rem .8rem 0 2rem;
+    width: 3.2rem;
+    height: 3.2rem;
+}
+.userinfo{
+    float: left;
+    margin-top: .9rem;
+    height: 3.2rem;
+}
+.userinfo span{
+    display: block;
+    line-height: 1.6rem;
+}
+.username{
+    font-size: 1rem;
+}
+.phoneNo{
+    font-size: .8rem;
+}
+.signBtn{
+    float: right;
+    margin-top: 1.75rem;
+    margin-right: 1rem;
+    width: 3.6rem;
+    height: 1.6rem;
+    line-height: 1.6rem;
+    font-size: 1.1rem;
+    text-align: center;
+    border: 1px solid #fff;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -ms-border-radius: 8px;
+}
+.point span{
+    display: block;
+    text-align: center;
+}
+.count{
+    font-size: 2rem;
+}
+
+
+.mylist{
+    margin-top: 1rem;
+}
+.mylist ul{
+    background: #fff;
+    padding-left: 1.2rem;
+}
+.mylist ul li{
+    width: 100%;
+    height: 4.8rem;
+    line-height: 4.8rem;
+    border-top: 1px solid #a68e83;
+    cursor: pointer;
+}
+.mylist ul li:nth-child(1){
+    border: none;
+}
+.icon_renwu{
+    display: block;
+    float: left;
+    width: 2.8rem;
+    height: 2.8rem;
+    margin: 1rem 2rem 0 1.2rem;
+    background: url("../images/myaccount/u163.png") 100% no-repeat;
+    background-size: 100%;
+}
+.icon_coupon{
+    display: block;
+    float: left;
+    width: 2.8rem;
+    height: 2.8rem;
+    margin: 1rem 2rem 0 1.2rem;
+    background: url("../images/myaccount/u165.png") 100% no-repeat;
+    background-size: 100%;
+}
+.icon_mark{
+    display: block;
+    float: right;
+    width: 1rem;
+    height: 2rem;
+    margin-top: 1.4rem;
+    margin-right: 1.4rem;
+    background: url("../images/myaccount/u169.png") 100% no-repeat;
+    background-size: 100%;
+}
+.loginOut{
+    display: none;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 4rem;
+    height: 3.2rem;
+}
+.loginOut a{
+    display: block;
+    width: 100%;
+    height: 3.2rem;
+    line-height: 3.2rem;
+    text-align: center;
+    background: #e26651;
+    color: #fff;
+}

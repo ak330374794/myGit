@@ -1,4 +1,6 @@
 $(function(){
+    setInputSession(); //缓存表单数据
+    sessionStorage.setItem("code","");
     var windowW = $(window).width();
     var fontS = parseFloat($("html").css("font-size").substring(0,$("html").css("font-size").length-2));
     var formW = windowW - 2*fontS;
@@ -11,7 +13,20 @@ $(function(){
         $(".formRight").css("width",formRightW-1);
         $("#code").css("width",formRightW-codeW+fontS);
         $(".code").css("right",-fontS-1);
-    };
+    }
+    $("#phoneNo").val($.cookie("mobilePhone"));
+    $(".goBuyCash").click(function(){
+        var btnType = $.cookie("btnType");
+        if(btnType==1){
+            location.href = "fundBuy.html" + locationSearch();
+        }else{
+            location.href = "cashApply.html" + locationSearch();
+        }
+    });
+
+    //添加银行列表
+    //bankList();
+    tradeAccountQuery(userId,merId,uuid,token,dsCustomerNo,tradeAccountNo);
     //有效期选择
     $(".timeSel .icon_circle").click(function(){
         $(".timeSel i").removeClass("active");
@@ -37,6 +52,7 @@ $(function(){
        }
     });
     $("#next").click(function(){
+        inputSession();
         var name = $("#name").val();    //投资人姓名
         var certificateType = 0;    //证件类型：身份证
         var certificateNo = $("#IDcard").val().replace(/x/g, "X"); //身份证号
@@ -45,6 +61,7 @@ $(function(){
         var bankCode = $("#bankSel").val(); //银行代码
         var mobilePhone = $("#phoneNo").val();  //手机号
         var code = $("#code").val();    //验证码
+        var authapplyno = $("#code").attr("authapplyno");    //原鉴权申请号
         if(name == ""){
             errorShowAlert("真实姓名不能为空");
             return false;
@@ -77,19 +94,30 @@ $(function(){
             errorShowAlert("您输入的手机格式不正确");
             return false;
         }
+        if(authapplyno == ""||authapplyno == undefined ||authapplyno == "undefined"){
+            errorShowAlert("请先获取验证码");
+            return false;
+        }
         if(code == ""){
             errorShowAlert("验证码不能为空");
             return false;
         }
+
+        if(name != $.cookie("name")||certificateNo != $.cookie("certificateNo")||sex != $.cookie("sex")||bankAccountNo != $.cookie("bankAccountNo")||bankCode != $.cookie("bankCode")){
+            errorShowAlert("由于账户信息更改，请重新获取验证码");
+            $("#code").attr("authApplyNo","");
+            $("#code").val("");
+            return false;
+        }
+
         var authApplyNo = $("#code").attr("authApplyNo"); //原鉴权申请号
         quickAuthConfirm(authApplyNo,code);
     });
 
     //忘记密码修改完成
     $(".registerFin a").click(function(){
-        var pswTest = /[0-9a-zA-Z]{6,8}/;
-        var password1 = $("#password1").val();
-        var password2 = $("#password2").val();
+        var password1 = $("#password1").val().trim();
+        var password2 = $("#password2").val().trim();
 
         if(password1==""){
             errorShowAlert("交易密码不能为空");
@@ -116,6 +144,7 @@ $(function(){
 
 //开户第一步
 function quickAuthApply(){
+    $("#code").val(""); //清空验证码
     var name = $("#name").val();    //投资人姓名
     var certificateType = 0;    //证件类型：身份证
     var certificateNo = $("#IDcard").val().replace(/x/g, "X"); //身份证号
@@ -124,7 +153,6 @@ function quickAuthApply(){
     var bankCode = $("#bankSel").val(); //银行代码
     var capitalChannelId = $("#bankSel").find("option:selected").attr("datatype");  //资金方式
     var mobilePhone = $("#phoneNo").val();  //手机号
-    var code = $("#code").val();    //验证码
     if(name == ""){
         errorShowAlert("真实姓名不能为空");
         return false;
@@ -157,7 +185,7 @@ function quickAuthApply(){
         errorShowAlert("您输入的手机格式不正确");
         return false;
     }
-    var wait = 60;
+    var wait = 20;
     function time(o) {
         var that = o;
         if (wait == 0) {
@@ -166,7 +194,7 @@ function quickAuthApply(){
             $(".code").removeClass("class", "gray_bj");
             $(".code").html("获取验证码");
             $(".code").attr("onclick","quickAuthApply()");
-            wait = 60;
+            wait = 20;
         } else {
             //                $("#smsCode").addClass("gray_bj");
             //var wait=120;
@@ -179,7 +207,6 @@ function quickAuthApply(){
                 wait--;
                 if(wait==0){
                     clearInterval(flag);
-                    //showAlert("如果您未能正常收入短信,请拨打客服电话400-6262-818联系我们");
                     time(that);
                 }
 
@@ -189,10 +216,11 @@ function quickAuthApply(){
     }
     hideLoading();
     showLoading();
-    console.log("鉴权申请");
-    $.post(
-        ajaxUrl()+"quickAuthApply",
-        {
+    $.ajax({
+        type: 'post',
+        timeout: 60000,
+        url: ajaxUrl() + "quickAuthApply",
+        data: {
             userId: userId,
             merId: merId,
             uuid: uuid,
@@ -207,12 +235,11 @@ function quickAuthApply(){
             authType: 1,
             capitalChannelId: capitalChannelId
         },
-        function(data){
+        dataType: 'json',
+        success: function(data){
             hideLoading();
             var a= data.data;
             if(data.resp_code=="0"){
-                console.log("鉴权申请成功，发送验证码");
-                console.log(data.resp_msg);
                 errorShowAlert("验证码已发送，请注意查收。");
                 var authApplyNo = a.authApplyNo //鉴权申请号
                 var sign = a.sign   //签名
@@ -222,7 +249,6 @@ function quickAuthApply(){
                 $("#code").attr("authApplyNo",authApplyNo);
                 var verifyCode = $("#code").val();
                 time(this);
-                console.log(authApplyNo);
                 $.cookie("bankCode",bankCode);
                 $.cookie("bankAccountNo",bankAccountNo);
                 $.cookie("name",name);
@@ -232,20 +258,35 @@ function quickAuthApply(){
                 $.cookie("sex",sex);
                 $.cookie("capitalChannelId",capitalChannelId);
             }else{
-                console.log(data.resp_msg);
+                $("#code").attr("authApplyNo","");
+                $("#code").val("");
                 setErrorMsg(data.resp_code, data.resp_msg);
             }
-        })
+        },
+        error: function(data){
+            $("#code").attr("authApplyNo","");
+            $("#code").val("");
+            hideLoading();
+            if(data.statusText == "timeout"){
+                errorShowAlert("请求超时");
+            }else if (data.status == "200"){
+                setErrorMsg(data.resp_code, data.resp_msg);
+            }else{
+                errorShowAlert("服务器异常");
+            }
+        }
+    })
 }
 
 
 function quickAuthConfirm(authApplyNo,verifyCode){
     hideLoading();
     showLoading();
-    console.log("鉴权确认");
-    $.post(
-        ajaxUrl()+"quickAuthConfirm",
-        {
+    $.ajax({
+        type: 'post',
+        timeout: 60000,
+        url: ajaxUrl() + "quickAuthConfirm",
+        data: {
             userId: userId,
             merId: merId,
             uuid: uuid,
@@ -253,12 +294,13 @@ function quickAuthConfirm(authApplyNo,verifyCode){
             authApplyNo: authApplyNo,
             verifyCode: verifyCode
         },
-        function(data){
+        dataType: 'json',
+        success: function(data){
             hideLoading();
             var a= data.data;
             if(data.resp_code=="0"){
-                console.log("鉴权确认成功");
-                console.log(data.resp_msg);
+                $("#code").attr("authApplyNo","");
+                $("#code").val("");
                 location.href = "fogetPswFinal.html"+locationSearch();
                 $.cookie("authApplyNo",authApplyNo);
                 if($(".timeSel .active").attr("data")==1){
@@ -269,10 +311,24 @@ function quickAuthConfirm(authApplyNo,verifyCode){
                     $.cookie("idValidDate",idValidDate);
                 }
             }else{
-                console.log(data.resp_msg);
+                $("#code").attr("authApplyNo","");
+                $("#code").val("");
                 setErrorMsg(data.resp_code, data.resp_msg);
             }
-        })
+        },
+        error: function(data){
+            $("#code").attr("authApplyNo","");
+            $("#code").val("");
+            hideLoading();
+            if(data.statusText == "timeout"){
+                errorShowAlert("请求超时");
+            }else if (data.status == "200"){
+                setErrorMsg(data.resp_code, data.resp_msg);
+            }else{
+                errorShowAlert("服务器异常");
+            }
+        }
+    })
 }
 
 function resetPassword(password1,password2){
@@ -281,26 +337,17 @@ function resetPassword(password1,password2){
     var bankCode = $.cookie("bankCode");	//银行编号
     var bankAccountNo = $.cookie("bankAccountNo");	//银行账号
     var capitalChannelId = $.cookie("capitalChannelId");    //资金方式
-    //var provinceCode = $.cookie("provinceCode");	//省代码
-    //var cityCode = $.cookie("cityCode");	//市代码
     var name = $.cookie("name");	//姓名
-    //var mobilePhone = $.cookie("mobilePhone");	//手机号
     var certificateType = $.cookie("certificateType");	//证件类型
     var certificateNo = $.cookie("certificateNo");	//证件号码
-    /*var idValidDate = $.cookie("idValidDate");	//证件有效期
-    var certificateValidEver = $.cookie("certificateValidEver");    //是否证件是否长期有效
-    var sex = $.cookie("sex");	//性别
-    var email = $.cookie("email");	//邮箱
-    var address = $.cookie("address");	//通讯地址
-    var postCode = $.cookie("postCode");	//邮政编码
-    var birthday = $.cookie("certificateNo").substring(6,14);   //出生日期*/
-    
-    console.log("开户接口");
+
     hideLoading();
     showLoading();
-    $.post(
-        ajaxUrl()+"resetPassword",
-        {
+    $.ajax({
+        type: 'post',
+        timeout: 60000,
+        url: ajaxUrl() + "resetPassword",
+        data: {
             userId: userId,
             merId: merId,
             uuid: uuid,
@@ -316,21 +363,89 @@ function resetPassword(password1,password2){
             certificateType: certificateType,
             certificateNo: certificateNo
         },
-        function(data){
+        dataType: 'json',
+        success: function(data){
             hideLoading();
             var a= data.data;
             if(data.resp_code=="0"){
-                console.log("忘记密码修改成功");
                 $.cookie("tradeAccountNo",a.tradeAccountNo);
                 location.href = "fogetResult.html"+locationSearch();
             }else if(data.resp_code=="-2000"){
                 location.href = "personCenter.html?userId="+userId+"&merId="+merId+"&uuid="+uuid+"&dsCustomerNo="+a.dsCustomerNo+"&token="+a.token;
                 $.cookie("token",a.token);
             }else{
-                console.log(data.resp_msg);
                 setErrorMsg(data.resp_code, data.resp_msg);
             }
-        })
+        },
+        error: function(data){
+            hideLoading();
+            if(data.statusText == "timeout"){
+                errorShowAlert("请求超时");
+            }else if (data.status == "200"){
+                setErrorMsg(data.resp_code, data.resp_msg);
+            }else{
+                errorShowAlert("服务器异常");
+            }
+        }
+    })
 }
 
+
+
+//资金来源 银行卡列表
+//通过基金公司客户账号查询已经开通的交易账号和绑定的银行卡信息
+function tradeAccountQuery(userId,merId,uuid,token,dsCustomerNo,tradeAccountNo){
+    hideLoading();
+    showLoading();
+    $.ajax({
+        type: 'post',
+        timeout: 60000,
+        url: ajaxUrl() + "tradeAccountQuery",
+        data: {
+            userId: userId,
+            merId: merId,
+            uuid: uuid,
+            token: token,
+            dsCustomerNo: dsCustomerNo,
+            tradeAccountNo: tradeAccountNo
+        },
+        dataType: 'json',
+        success: function(data) {
+            hideLoading();
+            var a = data.data;
+            if (data.resp_code == "0") {
+                $("#bankSel").html("");
+                var bankList = "";
+                $(a.bankAccounts).each(function(i,n){
+                    bankList += '<option value="'+ n.bankCode +'" datatype="'+ n.capitalChannelId +'">'+ n.paymentChannelName + '</option>';
+                });
+                $("#bankSel").append('<option value="0">请选择</option>');
+                $("#bankSel").append(bankList);
+                var listLength = $("#bankSel").find("option").length;
+                var opVal = $("#bankSel").find("option");
+                for(var x = 0;x<listLength;x++){
+                    for(var y = x+1;y<listLength;y++){
+                        if(opVal.eq(x).val() == opVal.eq(y).val()){
+                            opVal.eq(x).remove();
+                        }
+                    }
+                }
+            } else if (data.resp_code == "-2000") {
+                location.href = "personCenter.html?userId=" + userId + "&merId=" + merId + "&uuid=" + uuid + "&dsCustomerNo=" + a.dsCustomerNo + "&token=" + a.token;
+            } else {
+                setErrorMsg(data.resp_code, data.resp_msg);
+            }
+        },
+        error: function(data){
+            hideLoading();
+            if(data.statusText == "timeout"){
+                errorShowAlert("请求超时");
+            }else if (data.status == "200"){
+                setErrorMsg(data.resp_code, data.resp_msg);
+            }else{
+                errorShowAlert("服务器异常");
+            }
+        }
+    })
+}
 

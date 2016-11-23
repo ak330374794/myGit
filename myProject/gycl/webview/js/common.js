@@ -1,4 +1,6 @@
 $(function(){
+    var headerH = $(".header").height();
+    $("body").css("padding-top",headerH);
     orient();
     //queryFundInfo(userId,merId,uuid,token);
     //首页按钮间距
@@ -8,18 +10,15 @@ $(function(){
     //购买结果页文字宽度
     var textW = $(".buyResult").width() - $(".buyTime").width() - 80;
     $(".buyResult .text").css("width",textW);
-    //取现跳转
-    $(".cashbtn").click(function(){
-       console.log($(this).siblings(".bankName").text()); 
-    });
     //获取今天时间
     var date = new Date(new Date().getTime()).Format("yyyy-MM-dd");
     $.cookie("date",date);
-    console.log(date);
     $(".todayTime span").html(date);
-    
-    //添加银行列表
-    bankList();
+
+    //协议跳转保存表单数据
+    $(".xieyi a").click(function(){
+        inputSession();
+    });
 });
 
 //竖屏
@@ -27,70 +26,69 @@ $(window).bind( 'orientationchange', function(e){
     orient();
 });
 
+//跳出webview
+function outWebview(){
+    window.jsObject.backToMain("");
+}
 
 //首页当日基金信息
 function queryFundInfo(userId,merId,uuid,token){
-    console.log(userId+","+merId+","+uuid+","+token);
-    $.post(
-        ajaxUrl()+"queryFundInfo",
-        {
+    $.ajax({
+        type: 'post',
+        timeout: 60000,
+        url: ajaxUrl()+"queryFundInfo",
+        data: {
             userId: userId,
             merId: merId,
             uuid: uuid,
             token: token
         },
-        function(data){
+        dataType: 'json',
+        success: function(data){
             var a= data.data;
             if(data.resp_code=="0"){
-                console.log(data.resp_msg);
                 $(".fundName").html(a.fundName);
                 $(".fundNo").html(a.fundCode);
-                //$(".todayTime").html(data.resp_timestamp.substring(0,9));
                 $(".incomeRatio").html(a.incomeRatioDisplay);
                 $(".tenThouandIncome").html(a.tenThouandIncomeDisplay);
             }else{
-                console.log(data.resp_msg);
                 //setErrorMsg(data.resp_code, data.resp_msg);
             }
-        })
+        },
+        error: function(data){
+            hideLoading();
+            if(data.statusText == "timeout"){
+                errorShowAlert("请求超时");
+            }else if (data.status == "200"){
+                setErrorMsg(data.resp_code, data.resp_msg);
+            }else{
+                errorShowAlert("服务器异常");
+            }
+        }
+    })
 }
 
 
 
 //域名
 function ajaxUrl(){
-    //接口地址  http://10.150.150.xxx/GYCL/
     var ajaxUrl = "";
     var protocol=document.location.protocol;//协议
     var host=document.location.host;//域名
-    console.log(host);
-    //var ajaxUrl = "http://10.150.150.xxx/GYCL/";
     if(host == "localhost:8080" || host.substring(0,host.indexOf(":")) == "127.0.0.1"){
         ajaxUrl = protocol+'//'+"localhost:8080/GYCL/";
-        console.log(host);
         return ajaxUrl;
     }else{
         ajaxUrl = protocol+'//'+host+"/GYCL/";
-        console.log(host);
         return ajaxUrl;
     }
 }
-//接口地址
-//var ajaxUrl = util.ajaxUrl()+":8080/GYCL/";
-//var ajaxUrl = "http://localhost:8080/GYCL/";
-//var ajaxUrl = "http://192.168.1.76:8080/GYCL/";
-
-
 
 //地址参数
 function locationSearch(){
     var search = window.location.search;
     return search;
 }
-
-
-
-
 
 //日期格式化
 Date.prototype.Format = function (fmt) { //author: meizz
@@ -103,7 +101,6 @@ Date.prototype.Format = function (fmt) { //author: meizz
 		"q+": Math.floor((this.getMonth() + 3) / 3), //季度
 		"S": this.getMilliseconds() //毫秒
 	};
-	/////////////////////////////////////////////////
 	if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
 	for (var k in o)
 		if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
@@ -126,8 +123,6 @@ function dateCompare(a, b) {
         return true;
 }
 
-
-
 //接口返回码
 function setErrorMsg(errorcode, errormsg, callback) {
 	if (errormsg == "" || errormsg == null || errormsg == "undefined" || errormsg == undefined) {
@@ -140,19 +135,27 @@ function setErrorMsg(errorcode, errormsg, callback) {
 			errorShowAlert("购买金额不能小于0元");
 		} else if (errorcode == 3) {
 			errorShowAlert("取现金额不能大于可用金额");
+		} else if (errorcode == 4) {
+			errorShowAlert("取现金额不能为空");
+		} else if (errorcode == 5) {
+			errorShowAlert("取现金额不能小于0元");
 		} else {
 			errorShowAlert(errormsg);
 		}
-	} else {
+	} else if (errorcode == "" || errorcode == null || errorcode == "undefined" || errorcode == undefined){
+        errorShowAlert("");
+    } else {
 		if (errormsg == "未登录") {
-			//errorShowAlert(errormsg, gologin);
-		} else if (errorcode == "-2000"){
-            
+
+		} else if (errorcode == "-1001"){
+            errorShowAlert("请先获取验证码");
+        } else if (errorcode == "-2000"){
+
         } else if (errorcode == "-2001"){
 
-        } else if (errorcode == "-1001"){
-            errorShowAlert("请先获取验证码");
-        } else {
+        } else if (errorcode == "-2004"){
+            errorShowAlert(errormsg,outWebview);
+        }else {
 			errorShowAlert(errormsg);
 		}
 
@@ -167,6 +170,7 @@ function goOpenAccount(){
 //错误提示框
 function errorShowAlert(str,callback){
     hideAlert();
+
     var showBox;
     var showBox_h='';
     showBox_h +='<div class="showBox">';
@@ -180,14 +184,12 @@ function errorShowAlert(str,callback){
     showBox_h +='</div>';
     showBox = $(showBox_h);
     $("body").append(showBox);
-    var scrollHeight = $(window).height();
+    var scrollHeight = window.screen.availHeight; //屏幕尺寸高度
     $(".showBox").css("height",scrollHeight);
     var bookHeight = $(".showAlert").height();
-    $("#showAlert").css("top",(scrollHeight-bookHeight)/2);
+    $("#showAlert").css("top","10rem");
     $(".subButton .sure").click(function () {
         hideAlert();//购买基金接口
-        console.log("点击确认按钮！");
-        console.log(callback);
         if(callback){
             callback();
         }
@@ -209,7 +211,7 @@ function showAlert(flag,fundMoney,fundName,callback1,callback2){
     }else if(flag == 2){
         title = "请确认取现信息";
         type = "取现";
-    };
+    }
     showBox_h +='<div class="alert_title">'+title+'</div>';
     showBox_h +='<div class="alert_info"><span>'+type+'金额: </span><span>'+fundMoney+'</span>元</div>';
     showBox_h +='<div class="alert_info"><span>基金名称: </span><span>'+fundName+'</span></div>';
@@ -219,21 +221,15 @@ function showAlert(flag,fundMoney,fundName,callback1,callback2){
     showBox_h +='</div>';
     showBox = $(showBox_h);
     $("body").append(showBox);
-    var scrollHeight = $(window).height();
+    var scrollHeight = window.screen.availHeight;
     $(".showBox").css("height",scrollHeight);
     var bookHeight = $(".showAlert").height();
-    $("#showAlert").css("top",(scrollHeight-bookHeight)/2);
+    $("#showAlert").css("top","10rem");
     $(".subButton .confirm").click(function () {
         hideAlert();
         callback1(callback2);
-//        if (callback) {
-//            console.log(callback);
-//			callback();
-//		}
-        console.log("点击确认按钮！");
     });
     $(".subButton .cancle").click(function () {
-        console.log("点击取消按钮！");
         hideAlert();
     });
 
@@ -255,22 +251,19 @@ function enterCode(callback){
     showBox_h +='</div>';
     showBox = $(showBox_h);
     $("body").append(showBox);
-    var scrollHeight = $(window).height();
+    var scrollHeight = window.screen.availHeight;
     $(".showBox").css("height",scrollHeight);
     var bookHeight = $(".showAlert").height();
-    $("#showAlert").css("top",(scrollHeight-bookHeight)/2);
+    $("#showAlert").css("top","10rem");
     $(".goForget").on("click",function(){
         location.href = "fogetPsw.html" + locationSearch();
     });
     $(".subButton .confirm").click(function () {
         if (callback) {
-            console.log(callback);
             callback();
         }
-        console.log("点击确认按钮！");
     });
     $(".subButton .cancle").click(function () {
-        console.log("点击取消按钮！");
         hideAlert();
     });
 }
@@ -301,11 +294,11 @@ var getArgs = function (){ //作用是获取当前网页的查询条件
 //小数点后2位不能继续输入
 function inputVal(inputId){
     $("#"+inputId).bind('input propertychange', function(){
-        var val = parseFloat($("#"+inputId).val());
+        var val = Math.floor($("#"+inputId).val()*100)/100;
         var valArr = $("#"+inputId).val().split(".");
         if(valArr.length>1){
             if(valArr[1].length>=2){
-                $("#"+inputId).val(val.toFixed(2));
+                $("#"+inputId).val(val);
             }
         }
     });
@@ -319,21 +312,49 @@ $("form").submit(function () {
 
 //银行列表
 function bankList(){
-    var bankList = '<option value="0">请选择</option>'
-                    +'<option value="002" datatype="4">中国工商银行</option>'
-                    +'<option value="003" datatype="M">通联-中国农业银行</option>'
-                    +'<option value="004" datatype="M">通联-中国银行</option>'
-                    +'<option value="011" datatype="M">通联-上海浦东发展银行</option>'
-                    +'<option value="020" datatype="M">通联-兴业银行</option>'
-                    +'<option value="920" datatype="M">通联-平安银行</option>'
-                    +'<option value="017" datatype="M">通联-上海银行</option>'
-    $("#bankSel").html("");
-    $("#bankSel").prepend(bankList);
-}
+    hideLoading();
+    showLoading();
+    $.ajax({
+        type: 'post',
+        timeout: 60000,
+        url: ajaxUrl() + "queryBankList",
+        data: {
+            userId: userId,
+            merId: merId,
+            uuid: uuid,
+            token: token,
+            dsCustomerNo: dsCustomerNo
+        },
+        dataType: 'json',
+        success: function (data) {
+            hideLoading();
+            var a = data.data;
+            $("#bankSel").html("");
+            if (data.resp_code == "0") {
+                var bankList = "";
+                $(a).each(function(i,n){
+                    bankList += '<option value="'+ n.bankCode +'" datatype="'+ n.capitalModeId +'">'+ n.capitalModeName +'-'+ n.bankName+'</option>';
+                });
+                $("#bankSel").append('<option value="0">请选择</option>');
+                $("#bankSel").append(bankList);
+            } else if (data.resp_code == "-2000") {
+                location.href = "personCenter.html?userId=" + userId + "&merId=" + merId + "&uuid=" + uuid + "&dsCustomerNo=" + a.dsCustomerNo + "&token=" + a.token;
+            } else {
+                setErrorMsg(data.resp_code, data.resp_msg);
+            }
+        },
+        error: function(data){
+            hideLoading();
+            if(data.statusText == "timeout"){
+                errorShowAlert("请求超时");
+            }else if (data.status == "200"){
+                setErrorMsg(data.resp_code, data.resp_msg);
+            }else{
+                errorShowAlert("服务器异常");
+            }
+        }
+    })
 
-
-function trim(str){ //删除左右两端的空格
-    return str.replace(/(^s*)|(s*$)/g, "");
 }
 
 /*loading框*/
@@ -343,10 +364,10 @@ function showLoading(){
     var loadingBox = $('<div class="showLoading"></div>');
     loadingBox.append(loading);
     $("body").append(loadingBox);
-    var scrollHeight = $(window).height();
+    var scrollHeight = window.screen.availHeight;
     $(".showLoading").css("height",scrollHeight);
     var bookHeight = $(".loadingCircle").height();
-    $(".loadingCircle").css("top",(scrollHeight-bookHeight)/2);
+    $(".loadingCircle").css("top","18rem");
 }
 
 function hideLoading(){
@@ -382,7 +403,27 @@ function orient() {
 }
 
 
+//缓存表单数据
+function inputSession(){
+    var inputId;
+    var inputVal;
+    var inputLength = $("input").length;
+    for(var i=0;i<inputLength;i++){
+        inputId = $("input").eq(i).attr("id");
+        inputVal = $("input").eq(i).val();
+        sessionStorage.setItem(inputId,inputVal);
+    }
+}
 
+//把缓存表单数据填到表单里
+function setInputSession(){
+    var inputId;
+    var inputLength = $("input").length;
+    for(var i=0;i<inputLength;i++){
+        inputId = $("input").eq(i).attr("id");
+        $("#"+inputId).val(sessionStorage.getItem(inputId));
+    }
+}
 
 var args = new getArgs();
 var userId = args.userId;   //用户ID  zhangsan
@@ -392,7 +433,9 @@ var dsCustomerNo = args.dsCustomerNo;       //zhangsan1
 var tradeAccountNo = args.tradeAccountNo;
 var token = args.token;     //6ddd9441c7264494abbc04d4ff92111f
 var IDcardTest=/^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/;   //18位身份证校验
-var bankTest = /^(\d{16}|\d{18}|\d{19})$/; //校验银行卡
+var bankTest = /^(\d{16}|\d{17}|\d{18}|\d{19})$/; //校验银行卡
 var phoneTest = /^1[3-8]{1}\d{9}$/; //校验手机
 var pswTest = /^[a-zA-Z0-9]{6,8}$/; //校验密码
 var moneyTest = /^[0-9]+([.]{1}[0-9]{1,2})?$/; //校验购买金额
+var postCodeTest = /[1-9]\d{5}(?!\d)/;  //校验邮编
+var emailTest = /^([\w-])(.)+@([\w-])+(\.)([\w-])+/;    //校验邮箱

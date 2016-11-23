@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>工银瑞信基金</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!--根据屏幕全局显示-->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!--允许全屏模式浏览-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!--指定的iphone中safari顶端的状态条的样式;隐藏状态栏-->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="keywords" content="基金">
+    <meta name="description" content="基金">
+    <!--指定的iphone中safari顶端的状态条的样式-->
+    <meta name="format-detection" content="email=no" />
+    <!--去除Android平台中对邮箱地址的识别-->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- 隐藏地址栏 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="" />
+    <!-- 状态条风格 -->
+    <link rel='Shortcut Icon' href='img/logo.png' />
+
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/allFund.css">
+    <script>
+        var globalWidth = window.innerWidth;
+        var radixNO = 25/750*globalWidth;
+        if(globalWidth<400){
+            globalWidth = 375;
+            radixNO = 12.5;
+        }
+        var fitStyle = "<style>html{font-size:" + radixNO + "px;}</style>";
+        document.write(fitStyle);
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var globalWidth = window.innerWidth;// for judge the screen ??
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        docEl.style.fontSize = 25 * (clientWidth / 750) + 'px';
+                        if(clientWidth<400){
+                            docEl.style.fontSize = 12.5 + 'px';
+                        }
+                    };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+</head>
+<body>
+<div class="header">
+    <!--<a class="goBack" href="javascript:void(0)">返回</a>-->
+    <h2>工银瑞信基金</h2>
+    <a class="goSearch" href="fundSearch.html"></a>
+</div>
+<div class="tab">
+    <ul class="tabList">
+        <!--<li class="sel">热门推荐</li>
+        <li>我的关注</li>
+        <li>债券型</li>
+        <li>货币型</li>
+        <li>短期理财</li>
+        <li>混合型</li>
+        <li>指数型</li>
+        <li>股票型</li>
+        <li>QDII</li>-->
+    </ul>
+</div>
+<div class="content">
+    <div class="fundBtn">
+        <div class="netValue"><div><span>最新净值</span><i class="icon icon_arrow descending"></i></div></div>
+        <div class="range"><div><span>日涨跌</span><i class="icon icon_arrow descending"></i></div></div>
+    </div>
+    <div class="fundList">
+        <ul>
+            <!--<li>
+                <div class="tableHead"><span class="fundName">基金名称</span><span class="fundCode">（123123）</span><i class="icon_heart">收藏</i></div>
+                <table class="tableInfo">
+                    <tr class="tr1">
+                        <td class="td1">最新净值</td>
+                        <td class="td2">日涨跌</td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="td1 red nav">2.123</td>
+                        <td class="td2 red flow">6.99%</td>
+                    </tr>
+                </table>
+            </li>-->
+        </ul>
+    </div>
+</div>
+</body>
+<script src="js/jquery/jquery.min.js"></script>
+<script src="js/jquery/jquery.cookie.js"></script>
+<script src="js/common.js"></script>
+<script src="js/allFund.js"></script>
+</html>

@@ -183,6 +183,7 @@ body {
 .header {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
     height: 3.6rem;
     color: #fff;
@@ -244,15 +245,13 @@ body {
 }
 
 .content {
-    margin-top: 3.6rem;
     color: #fff;
+    margin-top: -2px;
 }
 
 .fund {
     background: url(../img/earth_bg.png) no-repeat #5ea0fe;
-    ;
     background-size: 100% 100%;
-    height: 12rem;
 }
 
 .fundInfo {
@@ -273,11 +272,11 @@ body {
 }
 
 .fundInfo .todayTime {
-    margin-top: .8rem;
+    padding-top: .8rem;
 }
 
 .detailInfo {
-    padding-top: 1.2rem;
+    /*padding-top: 1.2rem;*/
     padding-left: 1rem;
 }
 
@@ -328,9 +327,10 @@ body {
 }
 
 .rate {
+    position: relative;
     background: #5ea0fe;
     width: 100%;
-    padding: 1.8rem 0;
+    padding: 1.5rem 0;
 }
 
 .rateTable {
@@ -361,7 +361,7 @@ body {
 
 .btn {
     width: 100%;
-    margin-top: 4rem;
+    margin-top: 3rem;
     margin-bottom: 2rem;
 }
 
@@ -376,16 +376,6 @@ body {
     background: #5ea0fe;
     border-radius: 4px;
     cursor: pointer;
-}
-
-.login {
-    margin-top: 2rem;
-}
-
-.login a {
-    color: #5ea0fe;
-    border: 1px solid #5ea0fe;
-    background: #fff;
 }
 
 .btnList {
@@ -472,12 +462,20 @@ body {
     }
 }
 
+.tishiyu{
+    padding-bottom: .5rem;
+    font-size: .8rem;
+    text-align: center;
+    color: #fff;
+    background: #5ea0fe;
+}
 
 /*弹出框*/
 
 .showBox {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
     background: rgba(0, 0, 0, .6);
     z-index: 1000;
@@ -489,6 +487,7 @@ body {
     width: 72%;
     border-radius: 6px;
     background: #fff;
+    z-index: 1001;
 }
 
 .showContent {
@@ -497,8 +496,8 @@ body {
 }
 
 .showAlert .alert_title {
-    height: 30px;
-    line-height: 30px;
+    height: 2.4rem;
+    line-height: 2.4rem;
     font-size: 1.2rem;
     text-align: center;
     font-weight: bold;
@@ -506,7 +505,7 @@ body {
 
 .showAlert .alert_info {
     /*height: 25px;*/
-    line-height: 25px;
+    line-height: 2rem;
     font-size: 1rem;
 }
 
@@ -536,12 +535,12 @@ body {
     display: block;
     text-align: right;
     font-size: .9rem;
-    color: #222 !important;
+    color: #5ea0fe !important;
 }
 
 .subButton {
     width: 100%;
-    height: 40px;
+    height: 3.2rem;
     background: url(../img/bg_line.jpg) 50% repeat-y;
 }
 
@@ -549,8 +548,8 @@ body {
     display: block;
     float: left;
     text-align: center;
-    height: 40px;
-    line-height: 40px;
+    height: 3.2rem;
+    line-height: 3.2rem;
     width: 50%;
     color: #1b75da;
     font-weight: bold;
@@ -570,6 +569,7 @@ body {
 .showLoading {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
     background: rgba(0, 0, 0, 0);
     z-index: 1000;
@@ -660,4 +660,19 @@ body {
         -o-transform: rotate(360deg);
         transform: rotate(360deg);
     }
+}
+
+.xieyi{
+    height:1.6rem;
+    margin: 1rem;
+    text-align: center;
+}
+
+.xieyi a{
+    font-size: 1.2rem;
+    text-align: center;
+    color: #5ea0fe !important;
+}
+.xieyi .warm{
+    float: right;
 }

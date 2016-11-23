@@ -8,14 +8,13 @@ $(function(){
     }
     queryFundInfo(userId,merId,uuid,token);
     queryIndex();
+    var date = new Date(new Date().getTime()).Format("yyyy-MM-dd");
+    $.cookie("date",date);
     $.cookie('userId', userId);
+    $(".todayTime span").html(date);
     $(".register a").click(function(){
-        window.location.href = "openAccount.html"+locationSearch();
+        location.href = "openAccount.html"+locationSearch();
     });
-    $(".login a").click(function(){
-        window.location.href = "login.html"+locationSearch();
-    });
-    
 })
 
 
@@ -23,26 +22,37 @@ $(function(){
 function queryIndex(){
     hideLoading();
     showLoading();
-    $.post(
-        ajaxUrl()+"index",
-        {
+    $.ajax({
+        type: 'post',
+        timeout: 60000,
+        url: ajaxUrl() + "index",
+        data: {
             userId: userId,
             merId: merId,
             uuid: uuid,
             token: token
         },
-        function(data){
+        dataType: 'json',
+        success: function(data){
             hideLoading();
             var a= data.data;
             if(data.resp_code=="0"){
-                console.log(data.resp_msg);
             }else if(data.resp_code=="-2000"){
                 location.href = "personCenter.html?userId="+userId+"&merId="+merId+"&uuid="+uuid+"&dsCustomerNo="+a.dsCustomerNo+"&token="+a.token;
                 $.cookie("token",a.token);
             }else{
-                console.log(data.resp_msg);
                 setErrorMsg(data.resp_code, data.resp_msg);
             }
+        },
+        error: function(data){
+            hideLoading();
+            if(data.statusText == "timeout"){
+                errorShowAlert("请求超时");
+            }else if (data.status == "200"){
+                setErrorMsg(data.resp_code, data.resp_msg);
+            }else{
+                errorShowAlert("服务器异常");
+            }
         }
-    )
+    })
 }

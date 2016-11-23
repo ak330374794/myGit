@@ -24,7 +24,6 @@
 <link rel="stylesheet" href="css/mobiscroll.css">
 <link rel="stylesheet" href="css/mobiscroll_date.css">
 <link rel="stylesheet" href="css/query.css">
-<link rel="stylesheet" href="css/detail.css">
 <script>
     var globalWidth = window.innerWidth;
     var radixNO = 25/750*globalWidth;
@@ -54,9 +53,8 @@
 </head>
 <body>
     <div class="header">
-        <a class="goBack" href="javascript:history.go(-1)"><i class="icon icon_back"></i></a>
+        <a class="goBack" href="javascript:void(0)"><i class="icon icon_back"></i></a>
         <h2>查询</h2>
-        <a href="#" id="search" class="search"><span>高级查询</span></a>
     </div>
     <div class="content">
         <div class="tab">
@@ -84,9 +82,9 @@
                 </li>-->
             </ul>
         </div>
-        <div class="historyList">
+        <!--<div class="historyList">
             <ul>
-                <!--<li>
+                &lt;!&ndash;<li>
                     <div class="status fontSizeL">快速取现</div>
                     <table class="briefInfo">
                         <tr>
@@ -99,12 +97,12 @@
                         </tr>
                     </table>
                     <i class="icon icon_right"></i>
-                </li>-->
+                </li>&ndash;&gt;
             </ul>
         </div>
         <div class="shareList">
             <ul>
-                <!--<li>
+                &lt;!&ndash;<li>
                     <div class="status fontSizeL">快速取现</div>
                     <table class="briefInfo">
                         <tr>
@@ -117,129 +115,13 @@
                         </tr>
                     </table>
                     <i class="icon icon_right"></i>
-                </li>-->
+                </li>&ndash;&gt;
             </ul>
-        </div>
-    </div>
-    <div class="contentForm">
-        <ul class="formList">
-            <li>
-                <div class="formLeft"><i class="icon icon_no"></i><span>申请编号：</span></div>
-                <div class="formRight"><input id="applyNo" type="text" value="" readonly placeholder=""></div>
-            </li>
-            <li>
-                <div class="formLeft"><i class="icon icon_xxx"></i><span>业务名称：</span></div>
-                <div class="formRight"><input id="businessName" type="text" value="" readonly placeholder=""></div>
-            </li>
-            <li>
-                <div class="formLeft"><i class="icon icon_xx"></i><span>基金名称：</span></div>
-                <div class="formRight"><input id="fundName" type="text" value="" readonly placeholder=""></div>
-            </li>
-            <li>
-                <div class="formLeft"><i class="icon icon_point"></i><span>收费方式：</span></div>
-                <div class="formRight"><input id="chargeWay" type="text" value="" readonly placeholder=""></div>
-            </li>
-            <li>
-                <div class="formLeft"><i class="icon icon_money1"></i><span>申请金额：</span></div>
-                <div class="formRight"><input id="applyMoney" type="text" value="" readonly placeholder=""></div>
-            </li>
-        </ul>
-        <ul class="formList">
-            <li>
-                <div class="formLeft"><i class="icon icon_money2"></i><span>资金方式：</span></div>
-                <div class="formRight"><input id="fundWay" type="text" value="" readonly placeholder=""></div>
-            </li>
-            <li>
-                <div class="formLeft"><i class="icon icon_card"></i><span>关联银行卡：</span></div>
-                <div class="formRight"><input id="linkBank" type="text" value="" readonly placeholder=""></div>
-            </li>
-            <li>
-                <div class="formLeft"><i class="icon icon_type"></i><span>处理状态：</span></div>
-                <div class="formRight"><input id="payState" type="text" value="" readonly placeholder=""></div>
-            </li>
-            <li>
-                <div class="formLeft"><i class="icon icon_down"></i><span>下单时间：</span></div>
-                <div class="formRight"><input id="orderTime" type="text" value="" readonly placeholder=""></div>
-            </li>
-            <li>
-                <div class="formLeft"><i class="icon icon_time1"></i><span>申请日期：</span></div>
-                <div class="formRight"><input id="applyTime" type="text" value="" readonly placeholder=""></div>
-            </li>
-            <li>
-                <div class="formLeft"><i class="icon icon_mark"></i><span>确认状态：</span></div>
-                <div class="formRight"><input id="conMark" type="text" value="" readonly placeholder=""></div>
-            </li>
-            <!--<li>
-                <div class="formLeft"><i class="icon icon_note"></i><span>备注：</span></div>
-                <div class="formRight"><input id="note" type="text" value="" readonly placeholder=""></div>
-            </li>-->
-        </ul>
-    </div>
-    <div class="advQuery">
-        <ul class="conditionList">
-            <li>
-                <div class="listLeft"><span>开始日期</span></div>
-                <div class="listRight"><input id="beginTime" name="beginTime" type="text" readonly placeholder=""></div>
-            </li>
-            <li>
-                <div class="listLeft"><span>结束日期</span></div>
-                <div class="listRight"><input id="endTime" name="endTime" type="text" readonly placeholder=""></div>
-            </li>
-            <li>
-                <div class="listLeft"><span>交易状态</span></div>
-                <div class="listRight">
-                    <select id="state" class="bankSel">
-                        <option value="">全部</option>
-                        <option value="成功">成功</option>
-                        <option value="失败">失败</option>
-                    </select>
-                </div>
-            </li>
-            <li>
-                <div class="listLeft"><span>交易类型</span></div>
-                <div class="listRight">
-                    <select id="status" class="bankSel">
-                        <option value="" selected>全部</option>
-                        <!--<option value="A001">基金账户开户</option>
-                        <option value="A002">基金账户销户</option>-->
-                        <option value="T022">申购查询</option>
-                        <option value="T024">赎回查询</option>
-                        <option value="T098">快速赎回查询</option>
-                    </select>
-                </div>
-            </li>
-        </ul>
-        <div class="confirm"><a id="confirm">查询</a></div>
-        <div class="cancel"><a id="cancel">取消</a></div>
+        </div>-->
     </div>
 </body>
 <script src="js/jquery/jquery.min.js"></script>
 <script src="js/jquery/jquery.cookie.js"></script>
-<script src="js/timer/mobiscroll_date.js" charset="gb2312"></script>
-<script src="js/timer/mobiscroll.js"></script>
 <script src="js/common.js"></script>
 <script src="js/query.js"></script>
-<script src="js/detail.js"></script>
-<script>
-    $(function () {
-        var currYear = (new Date()).getFullYear();	
-        var opt={};
-        opt.date = {preset : 'date'};
-        opt.datetime = {preset : 'datetime'};
-        opt.time = {preset : 'time'};
-        opt.default = {
-            theme: 'android-ics light', //皮肤样式
-            display: 'modal', //显示方式 
-            mode: 'scroller', //日期选择模式
-            dateFormat: 'yyyy-mm-dd',
-            lang: 'zh',
-            showNow: true,
-            nowText: "今天",
-            startYear: currYear - 10, //开始年份
-            endYear: currYear + 20 //结束年份
-        };
-        $("#beginTime").mobiscroll($.extend(opt['date'], opt['default']));
-        $("#endTime").mobiscroll($.extend(opt['date'], opt['default']));
-    });
-</script>
 </html>
