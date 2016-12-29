@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>戏剧详情</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!--根据屏幕全局显示-->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!--允许全屏模式浏览-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!--指定的iphone中safari顶端的状态条的样式;隐藏状态栏-->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <!--指定的iphone中safari顶端的状态条的样式-->
+    <meta name="format-detection" content="email=no" />
+    <!--去除Android平台中对邮箱地址的识别-->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- 隐藏地址栏 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="" />
+    <!-- 状态条风格 -->
+    <link rel="stylesheet" href="js/swiper/swiper.3.2.0.min.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/dramaDetail.css">
+    <script>
+        var globalWidth = window.innerWidth;
+        var radixNO = 25/750*globalWidth;
+        if(globalWidth<400){
+            globalWidth = 375;
+            radixNO = 12.5;
+        }
+        var fitStyle = "<style>html{font-size:" + radixNO + "px;}</style>";
+        document.write(fitStyle);
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var globalWidth = window.innerWidth;// for judge the screen ??
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        docEl.style.fontSize = 25 * (clientWidth / 750) + 'px';
+                        if(clientWidth<400){
+                            docEl.style.fontSize = 12.5 + 'px';
+                        }
+                    };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+</head>
+<body>
+<div class="header">
+    <a class="goBack" href="javascript:history.go(-1)"><i class="icon_back"></i></a>
+    <h2>戏剧详情</h2>
+    <a href="#" id="share" class="share"><i class="icon_share"></i></a>
+</div>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"><a href="#"><img src="images/banner.png"></a></div>
+        <div class="swiper-slide"><a href="#"><img src="images/banner.png"></a></div>
+        <div class="swiper-slide"><a href="#"><img src="images/banner.png"></a></div>
+    </div>
+    <!-- 如果需要分页器 -->
+    <div class="swiper-pagination"></div>
+</div>
+<div class="content">
+    <div class="dramaInfo">
+        <div class="info"><span class="dramaname">爸爸的时光机</span><div class="grade gold"><span class="big">9.6</span>分</div></div>
+        <div class="count"><i class="icon_heart"></i><span id="count">88人想看</span></div>
+    </div>
+    <div class="dramaPrice">
+        <div class="price"><i class="icon_money"></i><span class="gold">￥88~$180</span></div>
+        <div class="time"><i class="icon_time"></i><span>2016/12/28-2016/12/30</span></div>
+    </div>
+    <div class="map">
+        <i class="icon_map"></i><span id="place" class="place">天桥艺术中心</span><i class="icon_more"></i>
+    </div>
+    <div class="details">
+        <h2>剧目介绍</h2>
+        <p>由上海丽安文化出品，王凯丽小姐担任出品人，邀请匈牙利、德国、韩国艺术家共同创作，是中国首部大型木偶装置舞台剧。这是一部风格奇幻的非传统木偶局独创设计的大型精密木偶，表演活灵活现。该局以马良和其父亲的共同生活经历改编而成。<img src="images/img.png">由上海丽安文化出品，王凯丽小姐担任出品人，邀请匈牙利、德国、韩国艺术家共同创作，是中国首部大型木偶装置舞台剧。这是一部风格奇幻的非传统木偶剧</p>
+    </div>
+</div>
+<div class="footer">
+
+</div>
+</body>
+<script src="js/jquery/jquery.min.js"></script>
+<script src="js/swiper/swiper.3.2.0.jquery.min.js"></script>
+<script src="js/common.js"></script>
+<script>
+    var mySwiper = new Swiper ('.swiper-container', {
+        loop: true,
+        // 如果需要分页器
+        pagination: '.swiper-pagination'
+    })
+</script>
+</html>
