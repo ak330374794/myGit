@@ -1,3 +1,7 @@
+html{
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+}
 .swiper-container {
     width: 100%;
 }
@@ -128,7 +132,104 @@
 .details p{
     line-height: 1.6rem;
 }
-
+.btnList{
+    position: relative;
+    padding: 0 11% 3rem;
+    width: 78%;
+    color: #141414;
+    overflow: auto;
+}
+.btnList .btn{
+    float: left;
+    width: 33%;
+}
+.btnList .btn span{
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+.icon_like, .icon_leaf, .icon_star{
+    display: block;
+    margin: 0 auto .6rem;
+    vertical-align: middle;
+    width: 2rem;
+    height: 2.2rem;
+}
+.icon_like{
+    background: url(../images/icon_wanna-see@2x.png) 50% no-repeat;
+    background-size: 1.84rem 1.76rem;
+}
+.icon_leaf{
+    background: url(../images/icon_comments@2x.png) 50% no-repeat;
+    background-size: 1.36rem 2.2rem;
+}
+.icon_star{
+    background: url(../images/icon_score@2x.png) 50% no-repeat;
+    background-size: 1.84rem 1.76rem;
+}
+.short{
+    position: absolute;
+    left: .8rem;
+    bottom: .8rem;
+}
+.commentList{
+    background: #fff;
+}
+.commentList li{
+    width: 100%;
+    min-height: 7.2rem;
+    overflow: auto;
+}
+.listLeft{
+    float: left;
+    padding: 1.6rem 0;
+    width: 10%;
+}
+.listLeft img{
+    display: block;
+    margin: 0 auto;
+    width: 1.8rem;
+    height: 1.8rem;
+}
+.listRight{
+    float: left;
+    padding: 1.6rem 0;
+    width: 90%;
+    min-height: 4rem;
+    border-bottom: 1px solid #d1d1d1;
+}
+.righttop{
+    position: relative;
+    margin-bottom: 1rem;
+}
+.name{
+    margin-right: 1rem;
+    font-weight: bold;
+    color: #202020;
+}
+.timeago{
+    font-size: .8rem;
+    color: #141414;
+}
+.support{
+    position: absolute;
+    top: 0;
+    right: 1.2rem;
+}
+.count{
+    margin-right: .5rem;
+}
+.icon_zan{
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    background: url(../images/icon_praise@2x.png) 50% no-repeat;
+    background-size: 1rem 1rem;
+}
+.reply{
+    margin-right: 1.2rem;
+    line-height: 1.4rem;
+}
 .footer{
     position: fixed;
     left: 0;
