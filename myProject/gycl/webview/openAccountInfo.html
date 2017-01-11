@@ -51,7 +51,7 @@
 </head>
 <body>
     <div class="header">
-        <a class="goBack" href="javascript:history.go(-1)"><i class="icon icon_back"></i></a>
+        <a class="goBack goOpenStep1" href="javascript:void(0)"><i class="icon icon_back"></i></a>
         <h2>开户</h2>
 <!--        <a href="#" id="user" class="user"><i class="icon icon_user"></i><span>李先生</span></a>-->
     </div>
@@ -66,6 +66,7 @@
                 <div class="formRight"><input id="riskType" name="riskType" type="text" readonly value="保守型" placeholder=""></div>
             </li>
             <li>
+                <span class="mustStar">*</span>
                 <div class="formLeft"><span>省/市</span></div>
                 <div class="formRight">
                     <select id="province" class="province">
@@ -74,6 +75,7 @@
                 </div>
             </li>
             <li>
+                <span class="mustStar">*</span>
                 <div class="formLeft"><span>市/区</span></div>
                 <div class="formRight">
                     <select id="city" class="city">
@@ -82,16 +84,28 @@
                 </div>
             </li>
             <li>
+                <span class="mustStar">*</span>
                 <div class="formLeft"><span>通讯地址</span></div>
                 <div class="formRight"><input id="address" name="address" type="text" value="" placeholder="请输入您的通讯地址"></div>
             </li>
             <li>
+                <span class="mustStar">*</span>
                 <div class="formLeft"><span>邮政编码</span></div>
                 <div class="formRight"><input id="postalcode" name="postalcode" type="tel" value="" placeholder="请输入邮政编码"></div>
             </li>
             <li>
+                <span class="mustStar">*</span>
                 <div class="formLeft"><span>邮箱</span></div>
                 <div class="formRight"><input id="email" name="email" type="text" value="" placeholder="请输入邮箱"></div>
+            </li>
+            <li>
+                <span class="mustStar">*</span>
+                <div class="formLeft"><span>职业</span></div>
+                <div class="formRight">
+                    <select id="profession" class="profession">
+                        <option value="">请选择职业</option>
+                    </select>
+                </div>
             </li>
         </ul>
         <div class="btn registerSec"><a href="javascript:void(0);">下一步</a></div>

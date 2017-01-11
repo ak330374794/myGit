@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>历史交易详情</title>
+<title>基金详情</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <!--根据屏幕全局显示-->
@@ -51,9 +51,8 @@
 </head>
 <body>
     <div class="header">
-        <a class="goBack" href="javascript:history.go(-1)"><i class="icon icon_back"></i></a>
-        <h2>历史交易详情</h2>
-<!--        <a href="#" id="user" class="user"><i class="icon icon_user"></i><span>李先生</span></a>-->
+        <a class="goBack" href="javascript:void(0)"><i class="icon icon_back"></i></a>
+        <h2>基金详情</h2>
     </div>
     <div class="content">
         <ul class="formList">
@@ -70,10 +69,6 @@
                 <div class="formRight"><input id="fundName" type="text" value="" readonly placeholder=""></div>
             </li>
             <li>
-                <div class="formLeft"><i class="icon icon_point"></i><span>收费方式：</span></div>
-                <div class="formRight"><input id="chargeWay" type="text" value="" readonly placeholder=""></div>
-            </li>
-            <li>
                 <div class="formLeft"><i class="icon icon_money1"></i><span>申请金额：</span></div>
                 <div class="formRight"><input id="applyMoney" type="text" value="" readonly placeholder=""></div>
             </li>
@@ -87,7 +82,7 @@
                 <div class="formLeft"><i class="icon icon_card"></i><span>关联银行卡：</span></div>
                 <div class="formRight"><input id="linkBank" type="text" value="" readonly placeholder=""></div>
             </li>
-            <li>
+            <li class="payDisplay">
                 <div class="formLeft"><i class="icon icon_type"></i><span>扣款状态：</span></div>
                 <div class="formRight"><input id="payState" type="text" value="" readonly placeholder=""></div>
             </li>
@@ -96,17 +91,17 @@
                 <div class="formRight"><input id="orderTime" type="text" value="" readonly placeholder=""></div>
             </li>
             <li>
-                <div class="formLeft"><i class="icon icon_time1"></i><span>申请时间：</span></div>
+                <div class="formLeft"><i class="icon icon_time1"></i><span>申请日期：</span></div>
                 <div class="formRight"><input id="applyTime" type="text" value="" readonly placeholder=""></div>
             </li>
             <li>
-                <div class="formLeft"><i class="icon icon_mark"></i><span>确认标识：</span></div>
+                <div class="formLeft"><i class="icon icon_mark"></i><span>确认状态：</span></div>
                 <div class="formRight"><input id="conMark" type="text" value="" readonly placeholder=""></div>
             </li>
-            <li>
+            <!--<li>
                 <div class="formLeft"><i class="icon icon_note"></i><span>备注：</span></div>
                 <div class="formRight"><input id="note" type="text" value="" readonly placeholder=""></div>
-            </li>
+            </li>-->
         </ul>
     </div>
 </body>

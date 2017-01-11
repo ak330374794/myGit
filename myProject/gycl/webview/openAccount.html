@@ -53,7 +53,7 @@
 </head>
 <body>
     <div class="header">
-        <a class="goBack" href="javascript:history.go(-1)"><i class="icon icon_back"></i></a>
+        <a class="goBack goIndex" href="javascript:void(0)"><i class="icon icon_back"></i></a>
         <h2>开户</h2>
 <!--        <a href="#" id="user" class="user"><i class="icon icon_user"></i><span>李先生</span></a>-->
     </div>
@@ -64,14 +64,17 @@
         </div>
         <ul class="formList">
             <li>
+                <span class="mustStar">*</span>
                 <div class="formLeft"><span>真实姓名</span></div>
                 <div class="formRight"><input id="name" name="name" type="text" value="" placeholder="请输入您的真实姓名"></div>
             </li>
             <li>
+                <span class="mustStar">*</span>
                 <div class="formLeft"><span>身份证</span></div>
                 <div class="formRight"><input id="IDcard" name="IDcard" type="text" value="" placeholder="请输入身份证号"></div>
             </li>
             <li>
+                <span class="mustStar">*</span>
                 <div class="formLeft"><span>性别</span></div>
                 <div class="formRight">
                     <div class="sexSel"><i class="icon icon_circle active" data="1"></i><span>男</span></div>
@@ -80,6 +83,7 @@
                 </div>
             </li>
             <li>
+                <span class="mustStar">*</span>
                 <div class="formLeft"><span>证件有效期</span></div>
                 <div class="formRight">
                     <div class="timeSel"><i class="icon icon_circle active" data="1"></i><span>长期有效</span></div>
@@ -87,6 +91,7 @@
                 </div>                
             </li>
             <li class="indate">
+                <span class="mustStar">*</span>
                 <div class="formLeft"><span>有效期</span></div>
                 <div class="formRight">
                     <div class="endTime"><input id="endTime" name="endTime" type="text" readonly placeholder="有效期时间"></div>
@@ -95,10 +100,12 @@
         </ul>
         <ul class="formList">
             <li>
+                <span class="mustStar">*</span>
                 <div class="formLeft"><span>银行卡号</span></div>
                 <div class="formRight"><input id="bankNo" type="tel" value="" placeholder="请输入银行卡号"></div>
             </li>
             <li>
+                <span class="mustStar">*</span>
                 <div class="formLeft"><span>银行</span></div>
                 <div class="formRight">
                     <select id="bankSel" class="bankSel">
@@ -106,15 +113,23 @@
                 </div>
             </li>
             <li>
+                <span class="mustStar">*</span>
                 <div class="formLeft"><span>预留手机号</span></div>
                 <div class="formRight"><input id="phoneNo" name="phoneNo" type="tel" value="" placeholder="请输入银行预留手机号"></div>
             </li>
             <li>
+                <span class="mustStar">*</span>
                 <div class="formLeft"><span>验证码</span></div>
                 <div class="formRight"><input id="code" name="code" type="text" value="" placeholder="请输入验证码"><a class="code" href="javascript:void(0)" onclick="quickAuthApply()">获取验证码</a></div>
             </li>
         </ul>
-        <div class="remind"><i class="icon icon_sel_y"></i><a class="goRemind" href="#">相关协议</a></div>
+        <div class="remind">
+            <i class="icon icon_sel_y"></i><span class="goRemind">请阅读并同意相关协议</span>
+        </div>
+        <div class="xieyi" ><a href="dzjyxy.html">《电子交易服务协议》</a></div>
+        <div class="xieyi" ><a href="zqtzxz.html">《证券投资基金投资人权益须知》</a></div>
+        <div class="xieyi" ><a href="ksshxy.html">《基金直销货币基金快速赎回协议》</a></div>
+        <div class="xieyi" ><a class="warm" href="promptAccount.html">交易提醒及温馨提示</a></div>
         <div class="btn registerFir"><a id="next" href="javascript:void(0)">下一步</a></div>
     </div>
 <!--    <div class="logo"><i class="icon icon_logo"></i></div>-->

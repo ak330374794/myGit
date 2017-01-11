@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>温馨提示</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!--根据屏幕全局显示-->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!--允许全屏模式浏览-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!--指定的iphone中safari顶端的状态条的样式;隐藏状态栏-->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="keywords" content="基金">
+    <meta name="description" content="基金">
+    <!--指定的iphone中safari顶端的状态条的样式-->
+    <meta name="format-detection" content="email=no" />
+    <!--去除Android平台中对邮箱地址的识别-->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- 隐藏地址栏 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="" />
+    <!-- 状态条风格 -->
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/agreement.css">
+    <script>
+        var globalWidth = window.innerWidth;
+        var radixNO = 25/750*globalWidth;
+        if(globalWidth<400){
+            globalWidth = 375;
+            radixNO = 12.5;
+        }
+        var fitStyle = "<style>html{font-size:" + radixNO + "px;}</style>";
+        document.write(fitStyle);
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var globalWidth = window.innerWidth;// for judge the screen ??
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        docEl.style.fontSize = 25 * (clientWidth / 750) + 'px';
+                        if(clientWidth<400){
+                            docEl.style.fontSize = 12.5 + 'px';
+                        }
+                    };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+</head>
+<body>
+<div class="header">
+    <a class="goBack" href="javascript:history.go(-1)"><i class="icon icon_back"></i></a>
+    <h2>温馨提示</h2>
+    <!--        <a href="#" id="user" class="user"><i class="icon icon_user"></i><span>李先生</span></a>-->
+</div>
+<div class="content">
+    <div class="agreement">
+        <p class="yellow">温馨提示：</p>
+        <p>（1）购买工银现金货币，遵循相应业务规则，购买工银现金货币申请一经提交不可撤销。</p>
+        <p>（2）不同关联账户下的工银现金货币余额分开登记显示。</p>
+        <p>（3）我们将24小时受理您的交易申请。每个交易日的交易申请至15:00:00截止，交易日15:00:00(含)以后的交易申请或非交易日的交易申请视为于下一个交易日提交。</p>
+        <p class="red">声明：</p>
+        <p>本人已了解国家有关开放式基金的法律、法规及相关政策，仔细阅读了进行基金交易所涉及的基金合同、招募说明书、发行公告、业务规则及业务条款，愿意接受该等文件及条款的约束。本人保证所提供的资料真实、有效，并自愿履行基金投资人的各项义务，自行承担基金投资风险，并确认本申请表所填信息之真实性和准确性。</p>
+        <p class="blue">免责条款：</p>
+        <p>本基金管理人以往的经营业绩，不代表基金的未来业绩；投资者购买货币市场基金不等于资金作为存款存放在银行或存款类金融机构；本基金管理人除恪守诚实信用、勤勉尽责的原则管理和运用基金资产外，不保证本公司管理的基金一定盈利，亦不保证基金的最低收益。</p>
+    </div>
+    <div class="btn"><a href="javascript:history.go(-1)">确定</a></div>
+</div>
+<!--    <div class="logo"><i class="icon icon_logo"></i></div>-->
+</body>
+<script src="js/jquery/jquery.min.js"></script>
+<script src="js/jquery/jquery.cookie.js"></script>
+<script src="js/common.js"></script>
+</html>

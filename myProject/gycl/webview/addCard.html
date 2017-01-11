@@ -53,7 +53,7 @@
 </head>
 <body>
     <div class="header">
-        <a class="goBack" href="javascript:history.go(-1)"><i class="icon icon_back"></i></a>
+        <a class="goBack goMyCard" href="javascript:void(0)"><i class="icon icon_back"></i></a>
         <h2>绑定银行卡</h2>
 <!--        <a href="#" id="user" class="user"><i class="icon icon_user"></i><span>李先生</span></a>-->
     </div>
@@ -61,10 +61,12 @@
         <div class="bankList listHead"><span>填写信息</span></div>
         <ul class="formList">
             <li>
+                <span class="mustStar">*</span>
                 <div class="formLeft"><span>银行卡号：</span></div>
                 <div class="formRight"><input id="bankNo" type="tel" value="" placeholder="请输入银行卡号"></div>
             </li>
             <li>
+                <span class="mustStar">*</span>
                 <div class="formLeft"><span>银行：</span></div>
                 <div class="formRight">
                     <select id="bankSel" class="bankSel">
@@ -72,14 +74,36 @@
                 </div>
             </li>
             <li>
-                <div class="formLeft"><span>预留手机号：</span></div>
-                <div class="formRight"><input id="phoneNo" name="phoneNo" type="tel" value="" placeholder="请输入银行预留手机号"></div>
+                <span class="mustStar">*</span>
+                <div class="formLeft"><span>省/市</span></div>
+                <div class="formRight">
+                    <select id="province" class="province">
+                        <option value="0">请选择省市</option>
+                    </select>
+                </div>
             </li>
             <li>
+                <span class="mustStar">*</span>
+                <div class="formLeft"><span>市/区</span></div>
+                <div class="formRight">
+                    <select id="city" class="city">
+                        <option value="">请选择市/区城市</option>
+                    </select>
+                </div>
+            </li>
+            <li>
+                <span class="mustStar">*</span>
+                <div class="formLeft"><span>预留手机号：</span></div>
+                <div class="formRight"><input id="phoneNo" name="phoneNo" type="tel" readonly value=""></div>
+            </li>
+            <li>
+                <span class="mustStar">*</span>
                 <div class="formLeft"><span>验证码：</span></div>
                 <div class="formRight"><input id="code" name="code" type="text" value="" placeholder="请输入验证码"><a class="code" href="javascript:void(0)" onclick="quickAuthApply()">获取验证码</a></div>
             </li>
         </ul>
+        <!--<div class="remind"><i class="icon icon_sel_y"></i><a class="goRemind" href="prompt.html">交易提醒及温馨提示</a></div>-->
+        <div class="xieyi" ><a class="warm" href="promptCard.html">交易提醒及温馨提示</a></div>
         <div class="btn registerFir"><a id="next" href="javascript:void(0)">下一步</a></div>
     </div>
 <!--    <div class="logo"><i class="icon icon_logo"></i></div>-->
@@ -89,6 +113,7 @@
 <script src="js/timer/mobiscroll_date.js" charset="gb2312"></script>
 <script src="js/timer/mobiscroll.js"></script>
 <script src="js/common.js"></script>
+<script src="js/openAccountInfo.js"></script>
 <script src="js/bindCard.js"></script>
 <script>
     $(function () {

@@ -1,0 +1,30 @@
+.agreement{
+    padding: 1rem;
+    color: #414141;;
+}
+.tittle{
+    padding: 1rem 3rem;
+    font-weight: bold;
+    line-height: 2rem;
+    font-size: 1.3rem;
+}
+.section{
+    font-weight: bold;
+    line-height: 2rem;
+    font-size: 1.2rem;
+}
+.indent{
+    text-indent: 2rem;
+}
+.blue{
+    color: #0000ff;
+}
+.red{
+    color: #ff0000;
+}
+.yellow{
+    color: #ff7100;
+}
+.bold{
+    font-weight: bold;
+}
