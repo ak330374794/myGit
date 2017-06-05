@@ -2,14 +2,34 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
-    "swiper/swiper"
+    "pages/swiper/swiper",
+    "pages/secondpages/index1"
   ],
   "window":{
     "backgroundColor": "#eeeeee",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#486aff",
-    "navigationBarTitleText": "myTest",
+    "navigationBarTitleText": "测试首页",
     "navigationBarTextStyle": "white",
     "enablePullDownRefresh": "false"
-  }
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath": "http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg",
+      "selectedIconPath": "https://img3.imgtn.bdimg.com/it/u=3022850970,4232922265&fm=21&gp=0.jpg"
+    }, {
+      "pagePath": "pages/logs/logs",
+      "text": "日志",
+      "iconPath": "http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg",
+      "selectedIconPath": "https://img3.imgtn.bdimg.com/it/u=3022850970,4232922265&fm=21&gp=0.jpg"
+    }],
+    "selectedColor":"#486aff"
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
 }

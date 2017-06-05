@@ -1,0 +1,5 @@
+/* pages/secondpages/index1.wxss */
+.slide-image {
+    width: 100%;
+    height: 100%;
+}

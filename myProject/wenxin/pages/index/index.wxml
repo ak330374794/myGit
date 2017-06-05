@@ -1,11 +1,16 @@
+
 <!--index.wxml-->
 <view class="container">
-  <view  bindtap="bindViewTap" class="userinfo">
+  <view bindtap="bindViewTap" class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
   </view>
-  <view id="tapTest" data-hi="MINA" bindtap="tapName"> Click me! </view>
+  <view id="tapTest" class="tapTest" data-hi="MINA" bindtap="tapName"> Click me! </view>
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
+  </view>
+  <view class="primary">
+    <button class="btnstyle" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"
+        disabled="{{disabled}}" bindtap="primary">下一页</button>
   </view>
 </view>
